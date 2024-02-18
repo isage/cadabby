@@ -1,0 +1,11 @@
+fgfwdumper:
+  attributes: 0
+  version:
+    major: 1
+    minor: 1
+  main:
+    start: module_start
+    stop: module_stop
+  libraries:
+    fgfwdumper:
+      syscall: true

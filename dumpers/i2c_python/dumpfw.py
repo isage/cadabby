@@ -22,10 +22,12 @@ def read_row(bus, row):
 
     checksum = (row & 0xFF) + ((row >> 8) & 0xFF)
     bus.write_word_data(rom_address, 0x64, checksum) #checksum
+    time.sleep(0.02)
     block = []
     #0x04 - 0x63 = 96 bytes
     for i in range(96):
         block.append(bus.read_byte_data(rom_address, 0x04+i))
+        time.sleep(0.02)
     time.sleep(0.02)
     return block
 

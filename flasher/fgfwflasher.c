@@ -157,7 +157,7 @@ int fwFlash(const char* filename)
     int fp_fw = ksceIoOpen(filename, SCE_O_RDONLY, 0777);
 
     // start writing, skip first two rows (we'll write them after df if we have one)
-    ksceIoSeek(fp_fw, 96*2, SCE_SEEK_SET);
+    ksceIoLseek(fp_fw, 96*2, SCE_SEEK_SET);
 
     for (int row = 2; row < 512; ++row)
     {
@@ -236,7 +236,7 @@ int fwFlashFirstPage(const char* filename)
     uint8_t cmd[4] = {0};
     int ret = 0;
     int fp_fw = ksceIoOpen(filename, SCE_O_RDONLY, 0777);
-    ksceIoSeek(fp_fw, 0, SCE_SEEK_SET);
+    ksceIoLseek(fp_fw, 0, SCE_SEEK_SET);
     for (int row = 0; row < 2; ++row)
     {
         uint8_t fwrow[96] = {0};

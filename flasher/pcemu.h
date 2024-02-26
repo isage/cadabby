@@ -17,7 +17,7 @@ typedef uint32_t SceUInt32;
 #define ksceIoOpen open
 #define ksceIoClose close
 #define ksceIoGetstat lstat
-#define ksceIoSeek lseek
+#define ksceIoLseek lseek
 #define ksceIoRead read
 #define ksceIoWrite write
 #define SceIoStat struct stat

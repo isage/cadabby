@@ -91,7 +91,7 @@ int fwMassErase()
   ksceKernelDelayThread(200);
   ret = ksceSysconBatteryExecBLCommand(cmdnum);
   cmdnum++;
-  ksceKernelDelayThread(200000);
+  ksceKernelDelayThread(300000);
 
   uint8_t check = 0;
   ret = ksceSysconBatteryReadBLCommand(cmdnum,0x16,0x66,&check,1);
@@ -138,7 +138,7 @@ int fwEraseFirstPage()
   ksceKernelDelayThread(200);
   ret = ksceSysconBatteryExecBLCommand(cmdnum);
   cmdnum++;
-  ksceKernelDelayThread(200000);
+  ksceKernelDelayThread(50000);
 
   if (ret != 0) return ret;
 
@@ -172,8 +172,12 @@ int fwFlash(const char* filename)
         ksceKernelDelayThread(200);
         ret = ksceSysconBatteryExecBLCommand(cmdnum);
         cmdnum++;
-        ksceKernelDelayThread(200000);
-        if (ret != 0) return ret;
+        ksceKernelDelayThread(2000);
+        if (ret != 0)
+        {
+            ksceIoClose(fp_fw);
+            return ret;
+        }
 
         // set row
         cmd[0] = 0x16;
@@ -184,8 +188,12 @@ int fwFlash(const char* filename)
         ksceKernelDelayThread(200);
         ret = ksceSysconBatteryExecBLCommand(cmdnum);
         cmdnum++;
-        ksceKernelDelayThread(200000);
-        if (ret != 0) return ret;
+        ksceKernelDelayThread(2000);
+        if (ret != 0)
+        {
+            ksceIoClose(fp_fw);
+            return ret;
+        }
 
         // write row
         cmd[0] = 0x16;
@@ -198,8 +206,12 @@ int fwFlash(const char* filename)
         }
         ret = ksceSysconBatteryExecBLCommand(cmdnum);
         cmdnum++;
-        ksceKernelDelayThread(200000);
-        if (ret != 0) return ret;
+        ksceKernelDelayThread(2000);
+        if (ret != 0)
+        {
+            ksceIoClose(fp_fw);
+            return ret;
+        }
 
         // write checksum
         uint32_t checksum = 0x02; // cmd
@@ -215,8 +227,12 @@ int fwFlash(const char* filename)
         ksceKernelDelayThread(200);
         ret = ksceSysconBatteryExecBLCommand(cmdnum);
         cmdnum++;
-        ksceKernelDelayThread(200000);
-        if (ret != 0) return ret;
+        ksceKernelDelayThread(5000);
+        if (ret != 0)
+        {
+            ksceIoClose(fp_fw);
+            return ret;
+        }
 
         uint8_t check = 0;
         ret = ksceSysconBatteryReadBLCommand(cmdnum,0x16,0x66,&check,1);
@@ -251,8 +267,12 @@ int fwFlashFirstPage(const char* filename)
         ksceKernelDelayThread(200);
         ret = ksceSysconBatteryExecBLCommand(cmdnum);
         cmdnum++;
-        ksceKernelDelayThread(200000);
-        if (ret != 0) return ret;
+        ksceKernelDelayThread(2000);
+        if (ret != 0)
+        {
+            ksceIoClose(fp_fw);
+            return ret;
+        }
 
         // set row
         cmd[0] = 0x16;
@@ -263,8 +283,12 @@ int fwFlashFirstPage(const char* filename)
         ksceKernelDelayThread(200);
         ret = ksceSysconBatteryExecBLCommand(cmdnum);
         cmdnum++;
-        ksceKernelDelayThread(200000);
-        if (ret != 0) return ret;
+        ksceKernelDelayThread(2000);
+        if (ret != 0)
+        {
+            ksceIoClose(fp_fw);
+            return ret;
+        }
 
         // write row
         cmd[0] = 0x16;
@@ -277,8 +301,12 @@ int fwFlashFirstPage(const char* filename)
         }
         ret = ksceSysconBatteryExecBLCommand(cmdnum);
         cmdnum++;
-        ksceKernelDelayThread(200000);
-        if (ret != 0) return ret;
+        ksceKernelDelayThread(2000);
+        if (ret != 0)
+        {
+            ksceIoClose(fp_fw);
+            return ret;
+        }
 
         // write checksum
         uint32_t checksum = 0x02; // cmd
@@ -294,8 +322,12 @@ int fwFlashFirstPage(const char* filename)
         ksceKernelDelayThread(200);
         ret = ksceSysconBatteryExecBLCommand(cmdnum);
         cmdnum++;
-        ksceKernelDelayThread(200000);
-        if (ret != 0) return ret;
+        ksceKernelDelayThread(5000);
+        if (ret != 0)
+        {
+            ksceIoClose(fp_fw);
+            return ret;
+        }
 
         uint8_t check = 0;
         ret = ksceSysconBatteryReadBLCommand(cmdnum,0x16,0x66,&check,1);
@@ -345,7 +377,7 @@ int dfMassErase()
   ksceKernelDelayThread(200);
   ret = ksceSysconBatteryExecBLCommand(cmdnum);
   cmdnum++;
-  ksceKernelDelayThread(200000);
+  ksceKernelDelayThread(300000);
   if (ret != 0) return ret;
 
   uint8_t check = 0;
@@ -377,8 +409,12 @@ int dfFlash(const char* filename)
         ksceKernelDelayThread(200);
         ret = ksceSysconBatteryExecBLCommand(cmdnum);
         cmdnum++;
-        ksceKernelDelayThread(200000);
-        if (ret != 0) return ret;
+        ksceKernelDelayThread(2000);
+        if (ret != 0)
+        {
+            ksceIoClose(fp_df);
+            return ret;
+        }
 
         // set row
         cmd[0] = 0x16;
@@ -389,8 +425,12 @@ int dfFlash(const char* filename)
         ksceKernelDelayThread(200);
         ret = ksceSysconBatteryExecBLCommand(cmdnum);
         cmdnum++;
-        ksceKernelDelayThread(200000);
-        if (ret != 0) return ret;
+        ksceKernelDelayThread(2000);
+        if (ret != 0)
+        {
+            ksceIoClose(fp_df);
+            return ret;
+        }
 
         // write row
         cmd[0] = 0x16;
@@ -403,8 +443,12 @@ int dfFlash(const char* filename)
         }
         ret = ksceSysconBatteryExecBLCommand(cmdnum);
         cmdnum++;
-        ksceKernelDelayThread(200000);
-        if (ret != 0) return ret;
+        ksceKernelDelayThread(2000);
+        if (ret != 0)
+        {
+            ksceIoClose(fp_df);
+            return ret;
+        }
 
         // write checksum
         uint32_t checksum = 0x0A; // cmd
@@ -420,8 +464,12 @@ int dfFlash(const char* filename)
         ksceKernelDelayThread(200);
         ret = ksceSysconBatteryExecBLCommand(cmdnum);
         cmdnum++;
-        ksceKernelDelayThread(200000);
-        if (ret != 0) return ret;
+        ksceKernelDelayThread(5000);
+        if (ret != 0)
+        {
+            ksceIoClose(fp_df);
+            return ret;
+        }
 
         uint8_t check = 0;
         ret = ksceSysconBatteryReadBLCommand(cmdnum,0x16,0x66,&check,1);
@@ -489,9 +537,9 @@ int checkFWChecksum(const char* filename)
   int ret = 0;
 
   int fp_fw = ksceIoOpen(filename, SCE_O_RDONLY, 0777);
-  uint8_t b = 0;
-  uint16_t file_checksum = 0;
-  while (ksceIoRead(fp_fw, &b, 1))
+  uint32_t b = 0;
+  uint32_t file_checksum = 0;
+  while (ksceIoRead(fp_fw, &b, 3))
   {
     file_checksum += b;
   }
@@ -520,10 +568,10 @@ int checkFWChecksum(const char* filename)
   ksceKernelDelayThread(200000);
   if (ret != 0) return ret;
 
-  uint16_t checksum = 0;
-  ret = ksceSysconBatteryReadBLCommand(cmdnum,0x16,0x04,&checksum,2);
+  uint32_t checksum = 0;
+  ret = ksceSysconBatteryReadBLCommand(cmdnum,0x16,0x04,&checksum,4);
 
-  ksceDebugPrintf("FW: checksum: 0x%04X, file checksum: 0x%04X\n", checksum, file_checksum);
+  ksceDebugPrintf("FW: checksum: 0x%08X, file checksum: 0x%08X\n", checksum, file_checksum);
 
   if (checksum != file_checksum) return -1;
 

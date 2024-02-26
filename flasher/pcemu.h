@@ -37,7 +37,7 @@ typedef uint32_t SceUInt32;
 #define REG_CHECKSUM1 0x65
 
 #define CMD_IF_READ_ROW   0x00
-#define CMD_UNK_0x01      0x01
+#define CMD_IF_WRITE_WORD 0x01 // "word" is 3 bytes
 #define CMD_IF_WRITE_ROW  0x02
 #define CMD_IF_ERASE_PAGE 0x03
 #define CMD_IF_ERASE_ALL  0x04
@@ -319,18 +319,18 @@ int try_execute_cmd(uint8_t* data, uint32_t size)
         case CMD_IF_CHECKSUM:
             {
                 uint32_t ifchecksum = 0;
-                for (int i = 0; i < 512*96; ++i)
-                    ifchecksum += fw_data[i];
+                for (int i = 0; i < 512*96; i+=3)
+                    ifchecksum += ((fw_data[i+2] << 16) + (fw_data[i+1] << 8) + fw_data[i]);
                 memcpy(regdata, &ifchecksum , 4);
             }
             break;
 
         case CMD_DF_CHECKSUM:
             {
-                uint32_t dfchecksum = 0;
+                uint16_t dfchecksum = 0;
                 for (int i = 0; i < 32*32; ++i)
                     dfchecksum += df_data[i];
-                memcpy(regdata, &dfchecksum , 4);
+                memcpy(regdata, &dfchecksum , 2);
             }
             break;
 

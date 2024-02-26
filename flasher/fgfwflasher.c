@@ -17,9 +17,9 @@
  #include <psp2kern/io/stat.h>
  #include <taihen.h>
 
- #define CHECK_PATH "ux0:/data/thats_so_magic"
- #define FW_PATH "ux0:/data/abbyfw.bin"
- #define DF_PATH "ux0:/data/abbydf.bin"
+ #define CHECK_PATH "ur0:/data/thats_so_magic"
+ #define FW_PATH "ur0:/data/abbyfw.bin"
+ #define DF_PATH "ur0:/data/abbydf.bin"
 #endif
 #include <string.h>
 

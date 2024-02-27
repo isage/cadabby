@@ -64,10 +64,10 @@ typedef struct {
     uint16_t final_voltage; // 0x0F
 } subclass_0x31; // 49: Configuration: Discharge
 
-// TODO: get back to this. shit's fucked
 typedef struct {
     uint8_t full_reset_counter; // 0x00 // 0x26A
-    // unknown data follows. constant, but different per dataflash version
+    uint8_t watchdog_reset_counter; // 0x01
+    uint32_t firmware_checksum; // 0x02
 } subclass_0x38; // 56: Configuration: Integrity data
 
 typedef struct {

@@ -42,17 +42,17 @@ typedef uint32_t SceUInt32;
 #define CMD_IF_ERASE_PAGE 0x03
 #define CMD_IF_ERASE_ALL  0x04
 #define CMD_IF_CHECKSUM   0x05
-#define CMD_UNK_0x06      0x06
-#define CMD_UNK_0x07      0x07
+#define CMD_POKE_BYTES    0x06
+#define CMD_PEEK_BYTES    0x07
 
-#define CMD_DF_CHECKSUM  0x08
-#define CMD_UNK_0x09     0x09
-#define CMD_DF_WRITE_ROW 0x0A
-#define CMD_DF_ERASE_ROW 0x0B
-#define CMD_DF_ERASE_ALL 0x0C
-#define CMD_UNK_0x0D     0x0D
-#define CMD_UNK_0x0E     0x0E
-#define CMD_EXIT_ROM     0x0F
+#define CMD_DF_CHECKSUM   0x08
+#define CMD_DF_WRITE_WORD 0x09
+#define CMD_DF_WRITE_ROW  0x0A
+#define CMD_DF_ERASE_ROW  0x0B
+#define CMD_DF_ERASE_ALL  0x0C
+#define CMD_VERSION       0x0D
+#define CMD_UNK_0x0E      0x0E
+#define CMD_EXIT_ROM      0x0F
 
 #define CMD_NONE         0xFF
 

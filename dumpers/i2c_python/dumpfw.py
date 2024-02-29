@@ -38,7 +38,7 @@ print("status: 0x{0:04x}".format(status))
 enter_rom(bus)
 
 #dump fw
-fp = open("slim.fg.fw", "wb")
+fp = open("abbyfw.bin", "wb")
 
 for i in range(512):
     block = read_row(bus, i)

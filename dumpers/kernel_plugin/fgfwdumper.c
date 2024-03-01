@@ -33,6 +33,7 @@ int module_start(int args, void *argv) {
     ksceKernelDelayThread(1000000);
 
     uint16_t cmdnum = 1;
+
     for(int i = 0; i < 512; ++i)
     {
 
@@ -84,6 +85,66 @@ int module_start(int args, void *argv) {
     }
 
     ksceIoClose(fp);
+
+    // dump raw df
+    fp = ksceIoOpen("ux0:/data/abbydf.bin", SCE_O_WRONLY | SCE_O_CREAT, 0777);
+
+    for(int i = 0; i < 32; ++i)
+    {
+
+        uint8_t cmd[7] = {
+            0x16,
+            0x00, // starting register
+            0x07, // 0x00: peek bytes cmd
+            0x00, // 0x01: offset
+            0x00, // 0x02: offset
+            0x00, // 0x03: empty
+            0x20, // 0x04: size
+        };
+
+        uint16_t addr = 0x4000 + i*32;
+        cmd[3] = addr & 0xFF;
+        cmd[4] = (addr >> 8) & 0xFF;
+
+        ret = ksceSysconBatterySetBLCommand(cmdnum, 0, cmd, 7);
+//        ksceDebugPrintf("ksceSysconBatterySetBLComand = 0x%08x\n", ret);
+        ksceKernelDelayThread(2000);
+        ret = ksceSysconBatteryExecBLCommand(cmdnum);
+//        ksceDebugPrintf("ksceSysconBatteryExecBLComand = 0x%08x\n", ret);
+        cmdnum++;
+        ksceKernelDelayThread(5000);
+
+        uint16_t checksum = 0;
+        for (int c = 2; c < 7; c++)
+            checksum += cmd[c] & 0xFF;
+
+        uint8_t checksumcmd[4] = {0x16, 0x64, 0x00, 0x00}; // checksum
+        checksumcmd[2] = checksum & 0xFF;
+        checksumcmd[3] = (checksum >> 8) & 0xFF;
+
+        ret = ksceSysconBatterySetBLCommand(cmdnum, 0, checksumcmd, 4);
+//        ksceDebugPrintf("ksceSysconBatterySetBLComand = 0x%08x\n", ret);
+        ksceKernelDelayThread(2000);
+        ret = ksceSysconBatteryExecBLCommand(cmdnum);
+//        ksceDebugPrintf("ksceSysconBatteryExecBLComand = 0x%08x\n", ret);
+        cmdnum++;
+        ksceKernelDelayThread(5000);
+
+        // can't read more that 16 at a time
+        // fist byte of returned data is length, skip it
+        for (int offset = 0+1; offset < 32+1; offset+=16)
+        {
+            uint8_t data[16] = {0};
+            ret = ksceSysconBatteryReadBLCommand(cmdnum, 0x16, 0x04+offset, data, 16);
+//           ksceDebugPrintf("ksceSysconBatteryReadBLComand = 0x%08x\n", ret);
+            cmdnum++;
+            ksceIoWrite(fp, data, 16);
+            ksceKernelDelayThread(2000);
+        }
+    }
+
+    ksceIoClose(fp);
+
 
     ret = ksceSysconBatteryStopBLMode();
     ksceDebugPrintf("ksceSysconBatteryStopBLMode = 0x%08x\n", ret);

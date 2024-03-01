@@ -14,9 +14,9 @@ There's (not fully compatible) [simulator/disassembler](https://repo.or.cz/cr816
 Contains raw binary dumps of FW and dataflash, flashstream files (those are used by vita updater and/or TI software)
 
 ## Dumpers
-Contains firmware dumpers.
-* i2c_python - dumps via raw i2c (even from semi-dead board, as long as there's power to fg) from RPi or any device with i2c.
-* kernel_plugin - vita kernel plugin to dump from live vita. **do not use plugin loaders**, load only from config.txt, takes some time.
+Contains firmware/dataflash dumpers.
+* i2c_python - dumps firmware via raw i2c (even from semi-dead board, as long as there's power to fg) from RPi or any device with i2c.
+* kernel_plugin - vita kernel plugin to dump firmware and raw dataflash from live vita. **do not use plugin loaders**, load only from config.txt, takes some time.
 
 ## Structs
 Contains dataflash sections structures as well as mapped offsets in raw dump.

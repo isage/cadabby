@@ -1,3 +1,4 @@
+#include <stdint.h>
 #pragma pack(push, 1)
 
 // strings (like device name) contain string length in first byte
@@ -168,7 +169,7 @@ typedef struct {
     uint16_t cycle_count; // 0x02
 
     uint16_t unk04; // 0x04
-    uint8_t unk04; // 0x06
+    uint8_t unk06; // 0x06
     uint16_t unk07; // 0x07
 
 
@@ -189,7 +190,7 @@ typedef struct {
     uint16_t cycle_count; // 0x02
 
     uint16_t unk04; // 0x04
-    uint8_t unk04; // 0x06
+    uint8_t unk06; // 0x06
     uint16_t unk07; // 0x07
 
 

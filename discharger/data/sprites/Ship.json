@@ -1,0 +1,75 @@
+{
+  "bbox": {
+    "height": 40,
+    "width": 78,
+    "x": 0,
+    "y": 0
+  },
+  "block_d": [],
+  "block_l": [],
+  "block_r": [],
+  "block_u": [],
+  "comment": "",
+  "frames": [
+    {
+      "dirs": [
+        {
+          "drawPoint": {
+            "x": 0,
+            "y": 0
+          },
+          "sheetOffset": {
+            "x": 0,
+            "y": 0
+          }
+        },
+        {
+          "drawPoint": {
+            "x": 0,
+            "y": 0
+          },
+          "sheetOffset": {
+            "x": 0,
+            "y": 0
+          }
+        },
+        {
+          "drawPoint": {
+            "x": 0,
+            "y": 0
+          },
+          "sheetOffset": {
+            "x": 0,
+            "y": 0
+          }
+        },
+        {
+          "drawPoint": {
+            "x": 0,
+            "y": 0
+          },
+          "sheetOffset": {
+            "x": 0,
+            "y": 0
+          }
+        }
+      ]
+    }
+  ],
+  "height": 40,
+  "name": "Ship",
+  "ndirs": 1,
+  "nframes": 1,
+  "sheet": "Sprites.bmp",
+  "solidbox": {
+    "height": 40,
+    "width": 78,
+    "x": 0,
+    "y": 0
+  },
+  "spawnpoint": {
+    "x": 0,
+    "y": 0
+  },
+  "width": 78
+}

@@ -36,7 +36,7 @@ PSA:
 * If vita shows garbage values in PSVIdent battery section - use batteryfixer app to hard-resed syscon and FG.
 
 ## Credits
-* Cat
+* Cat and cats
 * Totally real™ sKgLeBa (pop13_13) - research
 * [zecoxao](https://github.com/zecoxao) - providing flashstream files
 * CBPS discord - support
